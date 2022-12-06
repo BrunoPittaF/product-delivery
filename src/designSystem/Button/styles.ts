@@ -3,12 +3,16 @@ import styled from 'styled-components';
 
 const VARIANT_TYPE = {
   'yellow': {
-    color: '#fff',
+    color: '#ffffff',
     backgroundColor: '#DBAC2C'
   }, 
   'purple': {
     color: '#4B2995',
     backgroundColor: '#EBE5F9'
+  },
+  'purple-dark': {
+    color: '#ffffff',
+    backgroundColor: '#4B2995'
   },
    'grey': {
     color: '#574F4D',
@@ -23,7 +27,7 @@ const VARIANT_TYPE = {
 export interface ButtonProps {
   variant?:  keyof typeof VARIANT_TYPE,
   children: ReactNode,
-  iconLeft?: ReactNode
+  iconLeft?: ReactNode,
 }
 
 
