@@ -25,6 +25,9 @@ export const Button = styled(ButtonContainer)`
 
       font-size: 14px;
       font-weight: 400;
+`;
 
-
-`
+export const ButtonCard = styled(ButtonContainer)`
+      padding: 8px;
+      border-radius: 6px;
+`;

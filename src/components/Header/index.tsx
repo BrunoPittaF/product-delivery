@@ -1,4 +1,4 @@
-import { HeaderContainer, Button } from './styles';
+import { HeaderContainer, Button, ButtonCard } from './styles';
 
 import { MapPin, ShoppingCart } from 'phosphor-react';
 
@@ -16,9 +16,9 @@ export function Header() {
           Porto Alegre, RS
         </Button>
 
-        <button>
-          <ShoppingCart  size={22}/>
-        </button>
+        <ButtonCard variant='yellow-basic'>
+          <ShoppingCart color='#C47F17' weight='fill'  size={22}/>
+        </ButtonCard>
       </div>
     </HeaderContainer>
   )

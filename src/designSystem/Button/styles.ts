@@ -33,6 +33,6 @@ export const ButtonContainer = styled.button<ButtonProps>`
       align-items: center;
       justify-content: center;
 
-      color: ${props => VARIANT_TYPE[props.variant!].color };
+      color: ${props => VARIANT_TYPE[props.variant!].color};
       background-color: ${props => VARIANT_TYPE[props.variant!].backgroundColor }   
 `;
