@@ -8,7 +8,6 @@ import { Card } from '../../designSystem/Card';
 export function Home() {
   return (
     <IntroContainer>
-      <Card description="" image="" name="" price="" typeList={[]} />
       <div className="textInfo">
         <h1>Encontre o café perfeito para qualquer hora do dia</h1>
         <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
