@@ -90,3 +90,23 @@ export const OptionsContainer = styled.div`
   }
 
 `;
+
+export const ListProducst = styled.section`
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 10rem;
+
+  h2 {
+    margin-bottom: 3.375rem;
+    font-size: 2rem;
+    color: ${props => props.theme['base-subtitle']}
+  }
+
+  .card-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 37px 32px;
+  }
+`;

@@ -8,12 +8,11 @@ function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-      <Router/>
+        <Router />
       </BrowserRouter>
       <GlobalStyle />
-
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,7 +1,7 @@
 import { ButtonContainer } from '../../designSystem/Button/styles';
 import styled from 'styled-components';
 
-export const Container = styled.article`
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;

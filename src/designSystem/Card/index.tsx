@@ -3,7 +3,7 @@ import { ShoppingCart } from 'phosphor-react';
 import { useState } from 'react';
 import { Container, ButtonCard, Footer } from './styles';
 
-interface CardProps {
+export interface CardProps {
   image: string;
   typeList: string[];
   name: string;
