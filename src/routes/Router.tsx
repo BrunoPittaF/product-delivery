@@ -1,4 +1,3 @@
-import { CartContextProvider } from '../context/CartContext';
 import { Route, Routes } from 'react-router-dom';
 import { DefaultLayout } from '../Layouts/DefaultLayouts';
 import { Home } from '../pages/Home';

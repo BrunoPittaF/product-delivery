@@ -1,6 +1,6 @@
+import { Dispatch, SetStateAction } from 'react';
 import { InputNumber } from '../InputNumber';
 import { ShoppingCart } from 'phosphor-react';
-import { useState } from 'react';
 import { Container, ButtonCard, Footer } from './styles';
 
 export interface CardProps {
@@ -9,10 +9,11 @@ export interface CardProps {
   name: string;
   description: string;
   price: string;
+  value: number;
+  setValue: Dispatch<SetStateAction<number>>;
 }
 
-export function Card({ image, typeList, name, price, description }: CardProps) {
-  const [quantity, setQuantity] = useState<number>(0);
+export function Card({ image, typeList, name, price, description, value, setValue }: CardProps) {
   return (
     <Container>
       <img src={image} alt={name} />
@@ -28,7 +29,7 @@ export function Card({ image, typeList, name, price, description }: CardProps) {
           R$ <span>{price}</span>
         </p>
         <div className="actionButtons">
-          <InputNumber value={quantity} onChange={setQuantity} />
+          <InputNumber value={value} onChange={setValue} />
           <ButtonCard variant="purple-dark">
             <ShoppingCart color="#fff" weight="fill" size={22} />
           </ButtonCard>

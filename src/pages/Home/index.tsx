@@ -6,8 +6,10 @@ import coffeeDelivery from '../../assets/coffee-bg.png';
 import { useState } from 'react';
 import { Card, CardProps } from '../../designSystem/Card';
 
+type ICardList = Omit<CardProps, 'value' | 'setValue'>;
+
 export function Home() {
-  const cardItem: CardProps[] = [
+  const cardItem: ICardList[] = [
     {
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Tradicional',
@@ -52,6 +54,7 @@ export function Home() {
     },
   ];
   const [items, setItems] = useState(cardItem);
+  const [value, setValue] = useState<number>(0);
   return (
     <>
       <IntroContainer>
@@ -84,8 +87,8 @@ export function Home() {
       <ListProducst>
         <h2>Nossos cafés</h2>
         <div className="card-list">
-          {items.map((card) => {
-            return <Card {...card} />;
+          {items.map((card, index) => {
+            return <Card key={index} {...card} value={value} setValue={setValue} />;
           })}
         </div>
       </ListProducst>

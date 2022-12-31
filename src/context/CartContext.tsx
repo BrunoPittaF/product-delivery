@@ -1,5 +1,4 @@
-import { useState } from '@storybook/addons';
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 
 interface ICartContext {
   products: [] | null;
@@ -13,6 +12,8 @@ export const CartContext = createContext({} as ICartContext);
 
 export function CartContextProvider({ children }: ICartContextProviderProps) {
   const [products, setProducts] = useState(null);
+  console.log(products);
+
   return (
     <CartContext.Provider
       value={{
