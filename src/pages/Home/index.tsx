@@ -3,58 +3,12 @@ import { IntroContainer, OptionsContainer, ListProducst } from './styles';
 import { ShoppingCart, Package, Timer, Coffee } from 'phosphor-react';
 
 import coffeeDelivery from '../../assets/coffee-bg.png';
-import { useState } from 'react';
-import { Card, CardProps } from '../../designSystem/Card';
-
-type ICardList = Omit<CardProps, 'value' | 'setValue'>;
+import { Card } from '../../designSystem/Card';
+import { useCart } from '../../context/CartContext';
 
 export function Home() {
-  const cardItem: ICardList[] = [
-    {
-      image: 'src/assets/coffee-example.png',
-      name: 'Expresso Tradicional',
-      description: 'O tradicional café feito com água quente e grãos moídos',
-      price: '9,90',
-      typeList: ['tradicional'],
-    },
-    {
-      image: 'src/assets/coffee-example.png',
-      name: 'Expresso Americano',
-      description: 'Expresso diluído, menos intenso que o tradicional',
-      price: '9,90',
-      typeList: ['tradicional'],
-    },
-    {
-      image: 'src/assets/coffee-example.png',
-      name: 'Expresso Americano',
-      description: 'Expresso diluído, menos intenso que o tradicional',
-      price: '9,90',
-      typeList: ['tradicional'],
-    },
-    {
-      image: 'src/assets/coffee-example.png',
-      name: 'Expresso Americano',
-      description: 'Expresso diluído, menos intenso que o tradicional',
-      price: '9,90',
-      typeList: ['tradicional', 'gelado'],
-    },
-    {
-      image: 'src/assets/coffee-example.png',
-      name: 'Expresso Americano',
-      description: 'Expresso diluído, menos intenso que o tradicional',
-      price: '9,90',
-      typeList: ['tradicional'],
-    },
-    {
-      image: 'src/assets/coffee-example.png',
-      name: 'Expresso Americano',
-      description: 'Expresso diluído, menos intenso que o tradicional',
-      price: '9,90',
-      typeList: ['tradicional'],
-    },
-  ];
-  const [items, setItems] = useState(cardItem);
-  const [value, setValue] = useState<number>(0);
+  const { productList, addProduct } = useCart();
+
   return (
     <>
       <IntroContainer>
@@ -87,8 +41,8 @@ export function Home() {
       <ListProducst>
         <h2>Nossos cafés</h2>
         <div className="card-list">
-          {items.map((card, index) => {
-            return <Card key={index} {...card} value={value} setValue={setValue} />;
+          {productList.map((card) => {
+            return <Card key={card.id} onClick={addProduct} {...card} />;
           })}
         </div>
       </ListProducst>

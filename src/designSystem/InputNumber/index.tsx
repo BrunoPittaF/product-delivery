@@ -1,5 +1,5 @@
 import { Minus, Plus } from 'phosphor-react';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { InputContainer } from './styles';
 
 interface InputNumberProps {
@@ -9,6 +9,12 @@ interface InputNumberProps {
 }
 
 export function InputNumber({ disabled = false, onChange, value }: InputNumberProps) {
+  const [internalValue, setInternalValue] = useState(value);
+
+  useEffect(() => {
+    setInternalValue(value);
+  }, [value]);
+
   return (
     <InputContainer disabled={disabled}>
       <Minus
@@ -17,7 +23,7 @@ export function InputNumber({ disabled = false, onChange, value }: InputNumberPr
         color="#8047F8"
         onClick={() => !disabled && onChange((oldState) => oldState - 1)}
       />
-      <input type="number" value={value} />
+      <input type="number" value={internalValue} onChange={(e) => onChange(Number(e.target.value))} />
       <Plus
         size={14}
         weight="fill"
