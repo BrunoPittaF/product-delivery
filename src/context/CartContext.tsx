@@ -92,6 +92,8 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
     return [];
   });
 
+  console.log(cart);
+
   function addProduct(productId: number) {
     const newCart = [...cart];
     const productExists = newCart.find((product) => product.id === productId);
