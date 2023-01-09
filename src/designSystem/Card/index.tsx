@@ -11,12 +11,11 @@ export interface CardProps {
   name: string;
   description: string;
   price: string;
-  onClick: (productId: number) => void;
+  onClick: (productId: number, productAmount: number) => void;
 }
 
 export function Card({ image, typeList, name, price, description, onClick, id }: CardProps) {
   const [value, setValue] = useState(0);
-
   useEffect(() => {
     setValue(value);
   }, [value]);
@@ -37,7 +36,7 @@ export function Card({ image, typeList, name, price, description, onClick, id }:
         </p>
         <div className="actionButtons">
           <InputNumber value={value} onChange={setValue} />
-          <ButtonCard onClick={() => onClick(id)} variant="purple-dark">
+          <ButtonCard onClick={() => onClick(id, value)} variant="purple-dark">
             <ShoppingCart color="#fff" weight="fill" size={22} />
           </ButtonCard>
         </div>

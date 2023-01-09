@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { v4 } from 'uuid';
 
 interface IProduct {
   id: number;
@@ -21,7 +20,7 @@ export interface IProductInList {
 interface ICartContext {
   cart: IProduct[];
   productList: IProductInList[];
-  addProduct: (productid: number) => void;
+  addProduct: (productid: number, productAmount: number) => void;
 }
 
 interface ICartContextProviderProps {
@@ -33,15 +32,15 @@ export const CartContext = createContext({} as ICartContext);
 export function CartContextProvider({ children }: ICartContextProviderProps) {
   const productList: any[] = [
     {
-      id: v4(),
+      id: 0,
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Tradicional',
-      description: 'O tradicional café feito com água quente e grãos moídos',
+      description: 'O tradicional café preto',
       price: '9,90',
       typeList: ['tradicional'],
     },
     {
-      id: v4(),
+      id: 1,
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Americano',
       description: 'Expresso diluído, menos intenso que o tradicional',
@@ -49,34 +48,34 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
       typeList: ['tradicional'],
     },
     {
-      id: v4(),
+      id: 2,
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Americano',
-      description: 'Expresso diluído, menos intenso que o tradicional',
+      description: 'Expresso diluído, com leite',
       price: '9,90',
       typeList: ['tradicional'],
     },
     {
-      id: v4(),
+      id: 3,
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Americano',
-      description: 'Expresso diluído, menos intenso que o tradicional',
+      description: 'Café numero 6',
       price: '9,90',
       typeList: ['tradicional', 'gelado'],
     },
     {
-      id: v4(),
+      id: 4,
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Americano',
-      description: 'Expresso diluído, menos intenso que o tradicional',
+      description: 'Nao sei qual colocar aqui',
       price: '9,90',
       typeList: ['tradicional'],
     },
     {
-      id: v4(),
+      id: 5,
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Americano',
-      description: 'Expresso diluído, menos intenso que o tradicional',
+      description: 'Bla bla bla bla bla',
       price: '9,90',
       typeList: ['tradicional'],
     },
@@ -92,22 +91,20 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
     return [];
   });
 
-  console.log(cart);
-
-  function addProduct(productId: number) {
+  function addProduct(productId: number, productAmount: number) {
     const newCart = [...cart];
     const productExists = newCart.find((product) => product.id === productId);
 
     const currentAmount = productExists ? productExists.amount : 0;
 
     if (productExists) {
-      productExists.amount = currentAmount + 1;
+      productExists.amount = currentAmount + productAmount;
     } else {
       const product = productList.find((product) => product.id === productId);
 
       const newProduct = {
         ...product,
-        amount: 1,
+        amount: productAmount,
       };
       newCart.push(newProduct);
     }
