@@ -7,7 +7,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     
-    max-width: 256px;
+    width: 256px;
     border-radius: 6px 36px;
     background-color: ${props => props.theme['base-card']};
     padding: 0px 20px 20px;
