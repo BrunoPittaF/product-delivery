@@ -1,5 +1,8 @@
+import { PaymentCard } from '../../components/PaymentCard';
 import { Input } from '../../designSystem/Input';
 import { Container, Order, Cart } from './styles';
+
+import { Bank, CreditCard, Money } from 'phosphor-react';
 
 export function Checkout() {
   return (
@@ -34,6 +37,37 @@ export function Checkout() {
               <Input type="text" placeholder="UF" maxWidth="60px" />
             </div>
           </form>
+        </div>
+        <div className="payment">
+          <header>
+            <header>
+              <div className="icon-map">
+                <img src="../src/assets/dolar.png" alt="dolar" />
+              </div>
+              <div className="text-container">
+                <p className="title">Pagamento</p>
+                <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
+              </div>
+            </header>
+          </header>
+
+          <div className="payment-forms">
+            <PaymentCard
+              content="Cartão de crédito"
+              icon={<CreditCard size={20} color="#8047f8" weight="light" />}
+              onClick={() => console.log('caio')}
+            />
+            <PaymentCard
+              content="Cartão de débito"
+              icon={<Bank size={20} color="#8047f8" weight="light" />}
+              onClick={() => console.log('caio')}
+            />
+            <PaymentCard
+              content="Dinheiro"
+              icon={<Money size={20} color="#8047f8" weight="light" />}
+              onClick={() => console.log('caio')}
+            />
+          </div>
         </div>
       </Order>
       <Cart>

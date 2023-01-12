@@ -16,9 +16,6 @@ export interface CardProps {
 
 export function Card({ image, typeList, name, price, description, onClick, id }: CardProps) {
   const [value, setValue] = useState(0);
-  useEffect(() => {
-    setValue(value);
-  }, [value]);
 
   return (
     <Container>
@@ -35,7 +32,7 @@ export function Card({ image, typeList, name, price, description, onClick, id }:
           R$ <span>{price}</span>
         </p>
         <div className="actionButtons">
-          <InputNumber value={value} onChange={setValue} />
+          <InputNumber value={value} setValue={setValue} />
           <ButtonCard onClick={() => onClick(id, value)} variant="purple-dark">
             <ShoppingCart color="#fff" weight="fill" size={22} />
           </ButtonCard>

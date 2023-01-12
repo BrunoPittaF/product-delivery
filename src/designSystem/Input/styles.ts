@@ -36,6 +36,10 @@ export const Container = styled.div<ContainerProps>`
       outline: 1px solid ${props => props.theme['yellow-dark']}
     }
 
+    &:focus{
+      outline: 1px solid ${props => props.theme['yellow-dark']}
+    }
+
   }
 
   span {
@@ -43,6 +47,7 @@ export const Container = styled.div<ContainerProps>`
     font-weight: 400;
     font-size: 12px;
     color: ${props => props.theme['base-label']};
+    font-style: italic;
 
     position: absolute;
     right: 12px;

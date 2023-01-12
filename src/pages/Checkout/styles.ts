@@ -10,6 +10,7 @@ export const Container = styled.section`
 export const Order = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 12px;
   margin-bottom: 15px;
 
   .delivery {
@@ -35,6 +36,7 @@ export const Order = styled.div`
             font-family: 'Roboto';
             font-size: 14px;
             color: ${props => props.theme['base-text']};
+            margin-top: 2px;
           }
         }
       }
@@ -51,6 +53,44 @@ export const Order = styled.div`
       }
     }
   }
+
+  .payment {
+    width: 640px;
+    padding: 40px;
+    background-color: ${props => props.theme['base-card']};
+    border-radius: 6px;
+    header {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 32px;
+
+      .text-container {
+        p {
+          &:nth-child(1) {
+            font-family: 'Roboto';
+            font-size: 16px;
+            color: ${props => props.theme['base-subtitle']};
+          }
+          &:nth-child(2) {
+            font-family: 'Roboto';
+            font-size: 14px;
+            color: ${props => props.theme['base-text']};
+
+            margin-top: 2px;
+          }
+        }
+      }
+    }
+
+    .payment-forms {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      margin-top: 32px;
+    }
+  }
 `;
 
 export const Cart = styled.div`
@@ -64,6 +104,7 @@ export const Cart = styled.div`
     background-color: ${props => props.theme['base-card']};
     border-radius: 6px;
   }
+
 
 
 `
