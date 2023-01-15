@@ -4,12 +4,15 @@ import { Container, Order, Cart } from './styles';
 
 import { Bank, CreditCard, Money } from 'phosphor-react';
 import { useState } from 'react';
+import SimpleCard from '../../designSystem/SimpleCard/SimpleCard';
 
 export function Checkout() {
   const [teste, setTeste] = useState({
     testando: '',
   });
   console.log(teste);
+
+  const [value, setValue] = useState(0);
 
   return (
     <Container>
@@ -93,7 +96,9 @@ export function Checkout() {
       </Order>
       <Cart>
         <h2>Cafés selecionados</h2>
-        <div className="cart"></div>
+        <div className="cart">
+          <SimpleCard image="" name="asdasd" price="89,90" setValue={setValue} value={value}></SimpleCard>
+        </div>
       </Cart>
     </Container>
   );
