@@ -8,14 +8,9 @@ interface PaymentCardProps {
   onClick?: () => void;
 }
 
-export function PaymentCard({ content, icon, onClick }: PaymentCardProps) {
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const clickContainer = () => {
-    onClick && onClick();
-    setIsActive((oldState) => !oldState);
-  };
+export function PaymentCard({ content, icon, onClick, isActive = false }: PaymentCardProps) {
   return (
-    <Container onClick={() => !!onClick && clickContainer()} isActive={isActive}>
+    <Container onClick={() => !!onClick && onClick()} isActive={isActive}>
       {icon}
       <span>{content}</span>
     </Container>

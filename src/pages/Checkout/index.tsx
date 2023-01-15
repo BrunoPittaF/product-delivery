@@ -3,8 +3,14 @@ import { Input } from '../../designSystem/Input';
 import { Container, Order, Cart } from './styles';
 
 import { Bank, CreditCard, Money } from 'phosphor-react';
+import { useState } from 'react';
 
 export function Checkout() {
+  const [teste, setTeste] = useState({
+    testando: '',
+  });
+  console.log(teste);
+
   return (
     <Container>
       <Order>
@@ -55,17 +61,32 @@ export function Checkout() {
             <PaymentCard
               content="Cartão de crédito"
               icon={<CreditCard size={20} color="#8047f8" weight="light" />}
-              onClick={() => console.log('caio')}
+              onClick={() =>
+                setTeste({
+                  testando: 'credit',
+                })
+              }
+              isActive={teste.testando === 'credit' ? true : false}
             />
             <PaymentCard
               content="Cartão de débito"
               icon={<Bank size={20} color="#8047f8" weight="light" />}
-              onClick={() => console.log('caio')}
+              onClick={() =>
+                setTeste({
+                  testando: 'debit',
+                })
+              }
+              isActive={teste.testando === 'debit' ? true : false}
             />
             <PaymentCard
               content="Dinheiro"
               icon={<Money size={20} color="#8047f8" weight="light" />}
-              onClick={() => console.log('caio')}
+              onClick={() =>
+                setTeste({
+                  testando: 'money',
+                })
+              }
+              isActive={teste.testando === 'money' ? true : false}
             />
           </div>
         </div>
