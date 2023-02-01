@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     width: 368px;
-    height: 80px;
-    padding: 8px 4px;
+    padding: 8px 4px 26px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     background-color: ${props => props.theme['base-card']};
+    margin-bottom: 24px;
+
+    border-bottom: 1px solid ${props => props.theme['base-button']};
 
     img {
       width: 64px;
@@ -17,6 +19,8 @@ export const Container = styled.div`
 
     .items-column {
       margin-right: 50px;
+      margin-left: 20px;
+      width: 100%;
       p {
         font-weight: 400;
         font-size: 16px;
@@ -45,4 +49,23 @@ export const Container = styled.div`
         }
       }
     }
+
+    .price {
+
+    }
 `;
+
+export const Price = styled.p`
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: ${props => props.theme['base-text']};
+
+  span {
+    margin-left: 2px;
+  }
+
+
+`

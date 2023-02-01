@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import styled from 'styled-components';
+import { HTMLAttributes, ReactNode } from 'react';
+import styled, { css } from 'styled-components';
 
 const VARIANT_TYPE = {
   'yellow': {
@@ -24,7 +24,7 @@ const VARIANT_TYPE = {
   },
 }
 
-export interface ButtonProps {
+export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   variant?:  keyof typeof VARIANT_TYPE,
   children: ReactNode,
   iconLeft?: ReactNode,
@@ -33,10 +33,21 @@ export interface ButtonProps {
 
 
 export const ButtonContainer = styled.button<ButtonProps>`
+      ${({variant, theme}) => css`
       display: flex;
       align-items: center;
       justify-content: center;
 
-      color: ${props => VARIANT_TYPE[props.variant!].color};
-      background-color: ${props => VARIANT_TYPE[props.variant!].backgroundColor }   
+      color: ${VARIANT_TYPE[variant!].color};
+      background-color: ${VARIANT_TYPE[variant!].backgroundColor}; 
+
+        ${
+          variant == 'yellow' && css`
+            &:hover {
+              background-color: ${theme['yellow-dark']};
+            }
+          `
+        }
+      
+      `}
 `;

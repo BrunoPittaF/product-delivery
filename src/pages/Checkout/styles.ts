@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.section`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 2rem;
 `;
@@ -96,15 +96,79 @@ export const Order = styled.div`
 export const Cart = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 12px;
   margin-bottom: 15px;
+  width: 448px;
+  
 
   .cart {
-    width: 640px;
+    width: 100%;
     padding: 40px;
     background-color: ${props => props.theme['base-card']};
-    border-radius: 6px;
+    border-radius: 6px 44px;
+
+    .confirmButton {
+      padding: 12px 8px;
+      border-radius: 6px;
+      width: 100%;
+      text-transform: uppercase;
+      margin-top: 24px;
+      font-size: 14px;
+    }
   }
 
 
 
-`
+`;
+
+export const ContainerPrice = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12.5px;
+
+`;
+
+
+export const LabelPrice = styled.p<{
+  variant: 'regular' | 'subtitle'
+}>`
+  ${({theme, variant}) => css`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    ${
+      variant === 'regular' ? css`
+        font-weight: 400;
+        font-size: 14px;
+        color: ${theme['base-text']};
+
+        
+      ` : css`
+        font-weight: 700;
+        font-size: 20px;
+        color: ${theme['base-subtitle']};
+
+      
+      `
+    }
+  
+  
+  `}
+
+
+`;
+
+
+export const LabelCoin = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  &::before {
+    content: "R$";
+    margin-right: 2px;
+  }
+`;

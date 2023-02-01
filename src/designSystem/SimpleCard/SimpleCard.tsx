@@ -1,19 +1,19 @@
 import { Button } from '../../designSystem/Button';
 import { InputNumber } from '../../designSystem/InputNumber';
-import { Dispatch, SetStateAction } from 'react';
+import { useState } from 'react';
 
 import { Trash } from 'phosphor-react';
-import { Container } from './styles';
+import { Container, Price } from './styles';
 
 interface SimpleCardProps {
   image: string;
   name: string;
   price: string;
-  value: number;
-  setValue: Dispatch<SetStateAction<number>>;
 }
 
-export function SimpleCard({ image, name, value, setValue, price }: SimpleCardProps) {
+export function SimpleCard({ image, name, price }: SimpleCardProps) {
+  const [value, setValue] = useState(0);
+
   return (
     <Container>
       <img src={image} alt={name} />
@@ -29,10 +29,10 @@ export function SimpleCard({ image, name, value, setValue, price }: SimpleCardPr
         </div>
       </div>
 
-      <p className="price">
+      <Price>
         R$
         <span>{price}</span>
-      </p>
+      </Price>
     </Container>
   );
 }

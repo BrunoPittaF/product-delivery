@@ -1,19 +1,18 @@
 import { PaymentCard } from '../../components/PaymentCard';
 import { Input } from '../../designSystem/Input';
-import { Container, Order, Cart } from './styles';
-
 import { Bank, CreditCard, Money } from 'phosphor-react';
 import { useState } from 'react';
 import SimpleCard from '../../designSystem/SimpleCard/SimpleCard';
 
+import { Container, Order, Cart, ContainerPrice, LabelPrice, LabelCoin } from './styles';
+
 import imageCoffe from '../../assets/coffee-example.png';
+import { Button } from '../../designSystem/Button';
 
 export function Checkout() {
   const [teste, setTeste] = useState({
     testando: '',
   });
-
-  const [value, setValue] = useState(0);
   const [inputValue, setInputValue] = useState('');
 
   return (
@@ -157,13 +156,24 @@ export function Checkout() {
       <Cart>
         <h2>Cafés selecionados</h2>
         <div className="cart">
-          <SimpleCard
-            image={imageCoffe}
-            name="Expresso Tradicional"
-            price="89,90"
-            setValue={setValue}
-            value={value}
-          ></SimpleCard>
+          <SimpleCard image={imageCoffe} name="Expresso Tradicional" price="89,90"></SimpleCard>
+          <SimpleCard image={imageCoffe} name="Expresso Tradicional" price="89,90"></SimpleCard>
+
+          <ContainerPrice>
+            <LabelPrice variant="regular">
+              Total de itens <LabelCoin>29,70</LabelCoin>
+            </LabelPrice>
+            <LabelPrice variant="regular">
+              Entrega <LabelCoin>3,50</LabelCoin>
+            </LabelPrice>
+            <LabelPrice variant="subtitle">
+              Total <LabelCoin>33,20</LabelCoin>
+            </LabelPrice>
+          </ContainerPrice>
+
+          <Button className="confirmButton" variant="yellow">
+            Confirmar Pedido
+          </Button>
         </div>
       </Cart>
     </Container>

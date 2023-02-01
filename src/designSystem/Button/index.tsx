@@ -1,12 +1,9 @@
-import { ButtonContainer,ButtonProps } from './styles';
+import { ButtonContainer, ButtonProps } from './styles';
 
-
-
-
-export function Button({children, variant= 'purple' }: ButtonProps) {
+export function Button({ children, variant = 'purple', ...props }: ButtonProps) {
   return (
-    <ButtonContainer variant={variant}  >
+    <ButtonContainer variant={variant} {...props}>
       {children}
     </ButtonContainer>
-  )
+  );
 }
