@@ -9,10 +9,11 @@ interface SimpleCardProps {
   image: string;
   name: string;
   price: string;
+  externalValue: number;
 }
 
-export function SimpleCard({ image, name, price }: SimpleCardProps) {
-  const [value, setValue] = useState(0);
+export function SimpleCard({ image, name, price, externalValue }: SimpleCardProps) {
+  const [value, setValue] = useState(externalValue);
 
   return (
     <Container>

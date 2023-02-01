@@ -8,12 +8,32 @@ import { Container, Order, Cart, ContainerPrice, LabelPrice, LabelCoin } from '.
 
 import imageCoffe from '../../assets/coffee-example.png';
 import { Button } from '../../designSystem/Button';
+import { useCart } from '../../context/CartContext';
+
+interface IForm {
+  cep: string;
+  rua: string;
+  numero: string;
+  complemento: string;
+  bairro: string;
+  cidade: string;
+  uf: string;
+  payment: 'credit' | 'debit' | 'money';
+}
 
 export function Checkout() {
-  const [teste, setTeste] = useState({
-    testando: '',
+  const { cart } = useCart();
+
+  const [formState, setFormState] = useState<IForm>({
+    cep: '',
+    bairro: '',
+    cidade: '',
+    complemento: '',
+    numero: '',
+    rua: '',
+    uf: '',
+    payment: 'debit',
   });
-  const [inputValue, setInputValue] = useState('');
 
   return (
     <Container>
@@ -34,8 +54,13 @@ export function Checkout() {
             <div className="row">
               <Input
                 type="text"
-                value={inputValue}
-                onChange={({ target }) => setInputValue(target.value)}
+                value={formState.cep}
+                onChange={({ target }) =>
+                  setFormState((oldState) => ({
+                    ...oldState,
+                    cep: target.value,
+                  }))
+                }
                 placeholder="CEP"
                 css={{
                   maxWidth: '200px',
@@ -46,8 +71,13 @@ export function Checkout() {
               <Input
                 type="text"
                 placeholder="Rua"
-                value={inputValue}
-                onChange={({ target }) => setInputValue(target.value)}
+                value={formState.rua}
+                onChange={({ target }) =>
+                  setFormState((oldState) => ({
+                    ...oldState,
+                    rua: target.value,
+                  }))
+                }
                 css={{
                   maxWidth: '560px',
                 }}
@@ -57,8 +87,13 @@ export function Checkout() {
               <Input
                 type="text"
                 placeholder="Número"
-                value={inputValue}
-                onChange={({ target }) => setInputValue(target.value)}
+                value={formState.numero}
+                onChange={({ target }) =>
+                  setFormState((oldState) => ({
+                    ...oldState,
+                    numero: target.value,
+                  }))
+                }
                 css={{
                   maxWidth: '200px',
                 }}
@@ -67,8 +102,13 @@ export function Checkout() {
                 type="text"
                 maxLength={30}
                 placeholder="Complemento"
-                value={inputValue}
-                onChange={({ target }) => setInputValue(target.value)}
+                value={formState.complemento}
+                onChange={({ target }) =>
+                  setFormState((oldState) => ({
+                    ...oldState,
+                    complemento: target.value,
+                  }))
+                }
                 label={true}
                 css={{
                   maxWidth: '348px',
@@ -79,8 +119,13 @@ export function Checkout() {
               <Input
                 type="text"
                 placeholder="Bairro"
-                value={inputValue}
-                onChange={({ target }) => setInputValue(target.value)}
+                value={formState.bairro}
+                onChange={({ target }) =>
+                  setFormState((oldState) => ({
+                    ...oldState,
+                    bairro: target.value,
+                  }))
+                }
                 css={{
                   maxWidth: '200px',
                 }}
@@ -88,8 +133,13 @@ export function Checkout() {
               <Input
                 type="text"
                 placeholder="Cidade"
-                value={inputValue}
-                onChange={({ target }) => setInputValue(target.value)}
+                value={formState.cidade}
+                onChange={({ target }) =>
+                  setFormState((oldState) => ({
+                    ...oldState,
+                    cidade: target.value,
+                  }))
+                }
                 css={{
                   maxWidth: '276px',
                 }}
@@ -97,8 +147,13 @@ export function Checkout() {
               <Input
                 type="text"
                 placeholder="UF"
-                value={inputValue}
-                onChange={({ target }) => setInputValue(target.value)}
+                value={formState.uf}
+                onChange={({ target }) =>
+                  setFormState((oldState) => ({
+                    ...oldState,
+                    uf: target.value,
+                  }))
+                }
                 css={{
                   maxWidth: '60px',
                 }}
@@ -124,31 +179,34 @@ export function Checkout() {
               content="Cartão de crédito"
               icon={<CreditCard size={20} color="#8047f8" weight="light" />}
               onClick={() =>
-                setTeste({
-                  testando: 'credit',
-                })
+                setFormState((oldState) => ({
+                  ...oldState,
+                  payment: 'credit',
+                }))
               }
-              isActive={teste.testando === 'credit' ? true : false}
+              isActive={formState.payment === 'credit'}
             />
             <PaymentCard
               content="Cartão de débito"
               icon={<Bank size={20} color="#8047f8" weight="light" />}
               onClick={() =>
-                setTeste({
-                  testando: 'debit',
-                })
+                setFormState((oldState) => ({
+                  ...oldState,
+                  payment: 'debit',
+                }))
               }
-              isActive={teste.testando === 'debit' ? true : false}
+              isActive={formState.payment === 'debit'}
             />
             <PaymentCard
               content="Dinheiro"
               icon={<Money size={20} color="#8047f8" weight="light" />}
               onClick={() =>
-                setTeste({
-                  testando: 'money',
-                })
+                setFormState((oldState) => ({
+                  ...oldState,
+                  payment: 'money',
+                }))
               }
-              isActive={teste.testando === 'money' ? true : false}
+              isActive={formState.payment === 'money'}
             />
           </div>
         </div>
@@ -156,8 +214,17 @@ export function Checkout() {
       <Cart>
         <h2>Cafés selecionados</h2>
         <div className="cart">
-          <SimpleCard image={imageCoffe} name="Expresso Tradicional" price="89,90"></SimpleCard>
-          <SimpleCard image={imageCoffe} name="Expresso Tradicional" price="89,90"></SimpleCard>
+          {cart.map((coffe) => {
+            return (
+              <SimpleCard
+                externalValue={coffe.amount}
+                key={coffe.id}
+                image={coffe.image}
+                name={coffe.name}
+                price={coffe.price}
+              ></SimpleCard>
+            );
+          })}
 
           <ContainerPrice>
             <LabelPrice variant="regular">

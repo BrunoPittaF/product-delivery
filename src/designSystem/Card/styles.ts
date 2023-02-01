@@ -94,4 +94,8 @@ export const Footer = styled.footer`
 export const ButtonCard = styled(ButtonContainer)`
       padding: 8px;
       border-radius: 6px;
+
+      &:hover {
+        background-color: ${props => props.theme['purple-default']}
+      }
 `;
