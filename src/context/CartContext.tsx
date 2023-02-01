@@ -20,7 +20,8 @@ export interface IProductInList {
 interface ICartContext {
   cart: IProduct[];
   productList: IProductInList[];
-  addProduct: (productid: number, productAmount: number) => void;
+  addProduct: (productId: number, productAmount: number) => void;
+  removeProduct: (productId: number) => void;
 }
 
 interface ICartContextProviderProps {
@@ -113,12 +114,30 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
     localStorage.setItem('@coffee:cart', JSON.stringify(newCart));
   }
 
+  function removeProduct(productId: number) {
+    try {
+      const newCart = [...cart];
+      const productIndex = newCart.findIndex((product) => product.id === productId);
+
+      if (productIndex >= 0) {
+        newCart.splice(productIndex, 1);
+        setCart(newCart);
+        localStorage.setItem('@coffe:cart', JSON.stringify(newCart));
+      } else {
+        throw Error();
+      }
+    } catch (error) {
+      console.error('Não foi possivel remover o produto');
+    }
+  }
+
   return (
     <CartContext.Provider
       value={{
         cart,
         productList,
         addProduct,
+        removeProduct,
       }}
     >
       {children}

@@ -10,9 +10,10 @@ interface SimpleCardProps {
   name: string;
   price: string;
   externalValue: number;
+  onClick: any;
 }
 
-export function SimpleCard({ image, name, price, externalValue }: SimpleCardProps) {
+export function SimpleCard({ image, name, price, externalValue, onClick }: SimpleCardProps) {
   const [value, setValue] = useState(externalValue);
 
   return (
@@ -23,7 +24,7 @@ export function SimpleCard({ image, name, price, externalValue }: SimpleCardProp
         <p>{name}</p>
         <div className="container-buttons">
           <InputNumber value={value} setValue={setValue} />
-          <Button variant="grey">
+          <Button onClick={onClick} variant="grey">
             <Trash color="#8047F8" weight="fill" size={22} />
             <span>Remover</span>
           </Button>

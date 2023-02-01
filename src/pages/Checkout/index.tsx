@@ -22,7 +22,7 @@ interface IForm {
 }
 
 export function Checkout() {
-  const { cart } = useCart();
+  const { cart, removeProduct } = useCart();
 
   const [formState, setFormState] = useState<IForm>({
     cep: '',
@@ -32,7 +32,7 @@ export function Checkout() {
     numero: '',
     rua: '',
     uf: '',
-    payment: 'debit',
+    payment: 'credit',
   });
 
   return (
@@ -222,6 +222,7 @@ export function Checkout() {
                 image={coffe.image}
                 name={coffe.name}
                 price={coffe.price}
+                onClick={() => removeProduct(coffe.id)}
               ></SimpleCard>
             );
           })}
