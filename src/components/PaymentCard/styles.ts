@@ -6,7 +6,7 @@ interface ContainerProps {
 
 export const Container = styled.div<ContainerProps>`
     background-color: ${props => props.theme['base-button']};
-    padding: 16px;
+    padding: 15px;
     border-radius: 6px;
     width: 180px;
     height: 51px;
@@ -16,7 +16,7 @@ export const Container = styled.div<ContainerProps>`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 12px;
+    gap: 11px;
 
     span {
       text-transform: uppercase;
@@ -31,7 +31,7 @@ export const Container = styled.div<ContainerProps>`
 
     ${({isActive}) => isActive && css`
       background-color: ${props => props.theme['purple-light']};
-      border: 1px solid ${props => props.theme['purple-default']};
+      border-color: ${props => props.theme['purple-default']};
 
     `}
 `;

@@ -35,6 +35,7 @@ export function Checkout() {
             <div className="row">
               <Input
                 type="text"
+                value={inputValue}
                 onChange={({ target }) => setInputValue(target.value)}
                 placeholder="CEP"
                 css={{
@@ -46,6 +47,7 @@ export function Checkout() {
               <Input
                 type="text"
                 placeholder="Rua"
+                value={inputValue}
                 onChange={({ target }) => setInputValue(target.value)}
                 css={{
                   maxWidth: '560px',
@@ -56,6 +58,7 @@ export function Checkout() {
               <Input
                 type="text"
                 placeholder="Número"
+                value={inputValue}
                 onChange={({ target }) => setInputValue(target.value)}
                 css={{
                   maxWidth: '200px',
@@ -65,6 +68,7 @@ export function Checkout() {
                 type="text"
                 maxLength={30}
                 placeholder="Complemento"
+                value={inputValue}
                 onChange={({ target }) => setInputValue(target.value)}
                 label={true}
                 css={{
@@ -76,6 +80,7 @@ export function Checkout() {
               <Input
                 type="text"
                 placeholder="Bairro"
+                value={inputValue}
                 onChange={({ target }) => setInputValue(target.value)}
                 css={{
                   maxWidth: '200px',
@@ -84,6 +89,7 @@ export function Checkout() {
               <Input
                 type="text"
                 placeholder="Cidade"
+                value={inputValue}
                 onChange={({ target }) => setInputValue(target.value)}
                 css={{
                   maxWidth: '276px',
@@ -92,6 +98,7 @@ export function Checkout() {
               <Input
                 type="text"
                 placeholder="UF"
+                value={inputValue}
                 onChange={({ target }) => setInputValue(target.value)}
                 css={{
                   maxWidth: '60px',

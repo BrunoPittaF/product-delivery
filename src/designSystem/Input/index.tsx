@@ -1,4 +1,4 @@
-import { ChangeEventHandler, InputHTMLAttributes, useEffect, useState } from 'react';
+import { InputHTMLAttributes } from 'react';
 import { CSSProperties } from 'styled-components';
 import { Container } from './styles';
 
@@ -11,7 +11,7 @@ export function Input({ type, label = false, onChange, value, css, ...props }: I
   return (
     <Container css={css}>
       <input {...props} type={type} value={value} onChange={onChange} />
-      {label && <span>Opcional</span>}
+      {label && !!!value && <span>Opcional</span>}
     </Container>
   );
 }
