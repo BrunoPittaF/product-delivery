@@ -22,16 +22,17 @@ export function SimpleCard({ image, name, value, setValue, price }: SimpleCardPr
         <p>{name}</p>
         <div className="container-buttons">
           <InputNumber value={value} setValue={setValue} />
-          <Button>
+          <Button variant="grey">
             <Trash color="#8047F8" weight="fill" size={22} />
             <span>Remover</span>
           </Button>
         </div>
-        <p className="price">
-          R$
-          <span>{price}</span>
-        </p>
       </div>
+
+      <p className="price">
+        R$
+        <span>{price}</span>
+      </p>
     </Container>
   );
 }

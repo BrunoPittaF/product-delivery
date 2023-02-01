@@ -1,18 +1,16 @@
+import { ChangeEventHandler, InputHTMLAttributes, useEffect, useState } from 'react';
+import { CSSProperties } from 'styled-components';
 import { Container } from './styles';
 
-interface InputProps {
-  type: string;
-  maxWidth: string;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: boolean;
-  name?: string;
-  placeholder: string;
-  maxLength?: number;
+  css?: CSSProperties;
 }
 
-export function Input({ type, maxWidth, label = false, name, placeholder, maxLength }: InputProps) {
+export function Input({ type, label = false, onChange, value, css, ...props }: InputProps) {
   return (
-    <Container maxWidth={maxWidth}>
-      <input maxLength={maxLength} type={type} name={name} placeholder={placeholder} />
+    <Container css={css}>
+      <input {...props} type={type} value={value} onChange={onChange} />
       {label && <span>Opcional</span>}
     </Container>
   );

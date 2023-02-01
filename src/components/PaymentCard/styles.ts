@@ -11,6 +11,7 @@ export const Container = styled.div<ContainerProps>`
     width: 180px;
     height: 51px;
     cursor: pointer;
+    border: 1px solid ${props => props.theme['base-button']};
 
     display: flex;
     align-items: center;

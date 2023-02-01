@@ -6,13 +6,15 @@ import { Bank, CreditCard, Money } from 'phosphor-react';
 import { useState } from 'react';
 import SimpleCard from '../../designSystem/SimpleCard/SimpleCard';
 
+import imageCoffe from '../../assets/coffee-example.png';
+
 export function Checkout() {
   const [teste, setTeste] = useState({
     testando: '',
   });
-  console.log(teste);
 
   const [value, setValue] = useState(0);
+  const [inputValue, setInputValue] = useState('');
 
   return (
     <Container>
@@ -31,19 +33,70 @@ export function Checkout() {
 
           <form>
             <div className="row">
-              <Input type="text" placeholder="CEP" maxWidth="200px" />
+              <Input
+                type="text"
+                onChange={({ target }) => setInputValue(target.value)}
+                placeholder="CEP"
+                css={{
+                  maxWidth: '200px',
+                }}
+              />
             </div>
             <div className="row">
-              <Input type="text" placeholder="Rua" maxWidth="560px" />
+              <Input
+                type="text"
+                placeholder="Rua"
+                onChange={({ target }) => setInputValue(target.value)}
+                css={{
+                  maxWidth: '560px',
+                }}
+              />
             </div>
             <div className="row">
-              <Input type="text" placeholder="Número" maxWidth="200px" />
-              <Input type="text" maxLength={30} placeholder="Complemento" label={true} maxWidth="348px" />
+              <Input
+                type="text"
+                placeholder="Número"
+                onChange={({ target }) => setInputValue(target.value)}
+                css={{
+                  maxWidth: '200px',
+                }}
+              />
+              <Input
+                type="text"
+                maxLength={30}
+                placeholder="Complemento"
+                onChange={({ target }) => setInputValue(target.value)}
+                label={true}
+                css={{
+                  maxWidth: '348px',
+                }}
+              />
             </div>
             <div className="row">
-              <Input type="text" placeholder="Bairro" maxWidth="200px" />
-              <Input type="text" placeholder="Cidade" maxWidth="276px" />
-              <Input type="text" placeholder="UF" maxWidth="60px" />
+              <Input
+                type="text"
+                placeholder="Bairro"
+                onChange={({ target }) => setInputValue(target.value)}
+                css={{
+                  maxWidth: '200px',
+                }}
+              />
+              <Input
+                type="text"
+                placeholder="Cidade"
+                onChange={({ target }) => setInputValue(target.value)}
+                css={{
+                  maxWidth: '276px',
+                }}
+              />
+              <Input
+                type="text"
+                placeholder="UF"
+                onChange={({ target }) => setInputValue(target.value)}
+                css={{
+                  maxWidth: '60px',
+                }}
+              />
             </div>
           </form>
         </div>
@@ -97,7 +150,13 @@ export function Checkout() {
       <Cart>
         <h2>Cafés selecionados</h2>
         <div className="cart">
-          <SimpleCard image="" name="asdasd" price="89,90" setValue={setValue} value={value}></SimpleCard>
+          <SimpleCard
+            image={imageCoffe}
+            name="Expresso Tradicional"
+            price="89,90"
+            setValue={setValue}
+            value={value}
+          ></SimpleCard>
         </div>
       </Cart>
     </Container>

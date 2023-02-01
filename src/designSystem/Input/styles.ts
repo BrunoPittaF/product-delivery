@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled, { CSSProperties } from 'styled-components';
 export interface ContainerProps {
   maxWidth?: string | number;
+  css?: CSSProperties;
 }
 export const Container = styled.div<ContainerProps>`
   width: 100%;
