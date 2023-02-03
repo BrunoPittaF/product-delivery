@@ -27,7 +27,7 @@ interface ICartContext {
   productList: IProductInList[];
   addProduct: (productId: number, productAmount: number) => void;
   removeProduct: (productId: number) => void;
-  updateAmountProduct: ({}: updateAmountProductProps) => void;
+  updateAmountProduct: ({ amount, productId }: updateAmountProductProps) => void;
 }
 
 interface ICartContextProviderProps {
@@ -128,7 +128,7 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
       if (productIndex >= 0) {
         newCart.splice(productIndex, 1);
         setCart(newCart);
-        localStorage.setItem('@coffe:cart', JSON.stringify(newCart));
+        localStorage.setItem('@coffee:cart', JSON.stringify(newCart));
       } else {
         throw Error();
       }
@@ -138,6 +138,8 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
   }
 
   function updateAmountProduct({ productId, amount }: updateAmountProductProps) {
+    console.log(amount);
+
     try {
       const newCart = [...cart];
       const productExist = newCart.find((product) => product.id === productId);

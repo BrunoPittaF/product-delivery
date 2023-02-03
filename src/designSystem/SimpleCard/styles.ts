@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     width: 368px;
-    padding: 8px 4px 26px;
+    padding: 9.5px 0px 26px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -14,7 +14,6 @@ export const Container = styled.div`
     img {
       width: 64px;
       height: 64px;
-      margin-right: 20px;
     }
 
     .items-column {
@@ -57,6 +56,7 @@ export const Container = styled.div`
 
 export const Price = styled.p`
    font-weight: 700;
+   min-width: 64px;
 
   color: ${props => props.theme['base-text']};
 

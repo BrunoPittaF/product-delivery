@@ -1,7 +1,7 @@
 import { PaymentCard } from '../../components/PaymentCard';
 import { Input } from '../../designSystem/Input';
 import { Bank, CreditCard, Money } from 'phosphor-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SimpleCard from '../../designSystem/SimpleCard/SimpleCard';
 
 import { Container, Order, Cart, ContainerPrice, LabelPrice, LabelCoin } from './styles';
@@ -23,6 +23,8 @@ interface IForm {
 
 export function Checkout() {
   const { cart, removeProduct } = useCart();
+  const [totalItensPriceState, setTotalItensPriceState] = useState(0);
+  const [totalCart, setTotalCart] = useState(3.5);
 
   const [formState, setFormState] = useState<IForm>({
     cep: '',
@@ -35,12 +37,15 @@ export function Checkout() {
     payment: 'credit',
   });
 
-  const totalItensPrice = formatPrice(
-    cart.reduce((sumTotal, product) => {
-      sumTotal += product.price * product.amount;
-      return sumTotal;
-    }, 0)
-  );
+  useEffect(() => {
+    setTotalItensPriceState(
+      cart.reduce((sumTotal, product) => {
+        sumTotal += product.price * product.amount;
+        return sumTotal;
+      }, 0)
+    );
+    setTotalCart(totalItensPriceState + 3.5);
+  }, [cart]);
 
   function handleSubmitForm() {
     console.log(formState);
@@ -234,19 +239,20 @@ export function Checkout() {
                 name={coffe.name}
                 price={coffe.price}
                 onClick={() => removeProduct(coffe.id)}
+                id={coffe.id}
               ></SimpleCard>
             );
           })}
 
           <ContainerPrice>
             <LabelPrice variant="regular">
-              Total de itens <LabelCoin>{totalItensPrice}</LabelCoin>
+              Total de itens <LabelCoin>{formatPrice(totalItensPriceState)}</LabelCoin>
             </LabelPrice>
             <LabelPrice variant="regular">
-              Entrega <LabelCoin>3,50</LabelCoin>
+              Entrega <LabelCoin>{formatPrice(3.5)}</LabelCoin>
             </LabelPrice>
             <LabelPrice variant="subtitle">
-              Total <LabelCoin>33,20</LabelCoin>
+              Total <LabelCoin>{formatPrice(totalCart)}</LabelCoin>
             </LabelPrice>
           </ContainerPrice>
 

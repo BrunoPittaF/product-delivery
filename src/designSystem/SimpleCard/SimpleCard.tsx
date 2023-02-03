@@ -5,16 +5,19 @@ import { useState } from 'react';
 import { Trash } from 'phosphor-react';
 import { Container, Price } from './styles';
 import { formatPrice } from '../../utils/utils';
+import { useCart } from '../../context/CartContext';
 
 interface SimpleCardProps {
+  id: number;
   image: string;
   name: string;
   price: number;
   externalValue: number;
-  onClick: any;
+  onClick: () => void;
 }
 
-export function SimpleCard({ image, name, price, externalValue, onClick }: SimpleCardProps) {
+export function SimpleCard({ image, name, price, externalValue, onClick, id }: SimpleCardProps) {
+  const { updateAmountProduct } = useCart();
   const [value, setValue] = useState(externalValue);
 
   return (
@@ -24,7 +27,7 @@ export function SimpleCard({ image, name, price, externalValue, onClick }: Simpl
       <div className="items-column">
         <p>{name}</p>
         <div className="container-buttons">
-          <InputNumber value={value} setValue={setValue} />
+          <InputNumber id={id} onClick={updateAmountProduct} value={value} setValue={setValue} />
           <Button onClick={onClick} variant="grey">
             <Trash color="#8047F8" weight="fill" size={22} />
             <span>Remover</span>
@@ -32,7 +35,7 @@ export function SimpleCard({ image, name, price, externalValue, onClick }: Simpl
         </div>
       </div>
 
-      <Price>{formatPrice(price)}</Price>
+      <Price>{formatPrice(price * value)}</Price>
     </Container>
   );
 }
