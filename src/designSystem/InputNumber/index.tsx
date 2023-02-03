@@ -17,12 +17,12 @@ interface InputNumberProps {
 export function InputNumber({ disabled = false, setValue, value, onClick, id }: InputNumberProps) {
   function onPlus() {
     setValue((oldState) => oldState + 1);
-    !!onClick && !!id && onClick({ amount: value, productId: id });
+    !!onClick && !!id && onClick({ amount: value + 1, productId: id });
   }
 
   function onMinus() {
-    setValue((oldState) => (oldState >= 1 ? oldState - 1 : (oldState = 1)));
-    !!onClick && !!id && onClick({ amount: value, productId: id });
+    setValue((oldState) => (oldState > 1 ? oldState - 1 : (oldState = 1)));
+    !!onClick && !!id && onClick({ amount: value - 1, productId: id });
   }
   return (
     <InputContainer disabled={disabled}>

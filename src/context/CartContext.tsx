@@ -138,8 +138,6 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
   }
 
   function updateAmountProduct({ productId, amount }: updateAmountProductProps) {
-    console.log(amount);
-
     try {
       const newCart = [...cart];
       const productExist = newCart.find((product) => product.id === productId);

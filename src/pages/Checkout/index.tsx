@@ -37,15 +37,21 @@ export function Checkout() {
     payment: 'credit',
   });
 
-  useEffect(() => {
-    setTotalItensPriceState(
-      cart.reduce((sumTotal, product) => {
-        sumTotal += product.price * product.amount;
-        return sumTotal;
-      }, 0)
-    );
-    setTotalCart(totalItensPriceState + 3.5);
-  }, [cart]);
+  const teste = cart.reduce((sumTotal, product) => {
+    sumTotal += product.price * product.amount;
+    return sumTotal;
+  }, 0);
+
+  const teste2 = teste + 3.5;
+  // useEffect(() => {
+  //   setTotalItensPriceState(
+  //     cart.reduce((sumTotal, product) => {
+  //       sumTotal += product.price * product.amount;
+  //       return sumTotal;
+  //     }, 0)
+  //   );
+  //   setTotalCart(totalItensPriceState + 3.5);
+  // }, [cart]);
 
   function handleSubmitForm() {
     console.log(formState);
@@ -246,13 +252,13 @@ export function Checkout() {
 
           <ContainerPrice>
             <LabelPrice variant="regular">
-              Total de itens <LabelCoin>{formatPrice(totalItensPriceState)}</LabelCoin>
+              Total de itens <LabelCoin>{formatPrice(teste)}</LabelCoin>
             </LabelPrice>
             <LabelPrice variant="regular">
               Entrega <LabelCoin>{formatPrice(3.5)}</LabelCoin>
             </LabelPrice>
             <LabelPrice variant="subtitle">
-              Total <LabelCoin>{formatPrice(totalCart)}</LabelCoin>
+              Total <LabelCoin>{formatPrice(teste2)}</LabelCoin>
             </LabelPrice>
           </ContainerPrice>
 
