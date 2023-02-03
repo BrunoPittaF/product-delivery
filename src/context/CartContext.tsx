@@ -8,6 +8,18 @@ interface IProduct {
   name: string;
 }
 
+export interface IForm {
+  cep: string;
+  rua: string;
+  numero: string;
+  complemento: string;
+  bairro: string;
+  cidade: string;
+  uf: string;
+  payment: 'credit' | 'debit' | 'money';
+  totalValue: number;
+}
+
 export interface IProductInList {
   id: number;
   image: string;
@@ -28,6 +40,8 @@ interface ICartContext {
   addProduct: (productId: number, productAmount: number) => void;
   removeProduct: (productId: number) => void;
   updateAmountProduct: ({ amount, productId }: updateAmountProductProps) => void;
+  order: IForm;
+  changeOrder: (newOrder: IForm) => void;
 }
 
 interface ICartContextProviderProps {
@@ -97,6 +111,17 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
 
     return [];
   });
+  const [order, setOrder] = useState<IForm>({
+    cep: '',
+    bairro: '',
+    cidade: '',
+    complemento: '',
+    numero: '',
+    rua: '',
+    uf: '',
+    payment: 'credit',
+    totalValue: 0,
+  });
 
   function addProduct(productId: number, productAmount: number) {
     const newCart = [...cart];
@@ -152,6 +177,9 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
     }
   }
 
+  function changeOrder(newOrder: IForm) {
+    setOrder(newOrder);
+  }
   return (
     <CartContext.Provider
       value={{
@@ -160,6 +188,8 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
         addProduct,
         removeProduct,
         updateAmountProduct,
+        changeOrder,
+        order,
       }}
     >
       {children}

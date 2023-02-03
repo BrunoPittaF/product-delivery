@@ -7,54 +7,23 @@ import SimpleCard from '../../designSystem/SimpleCard/SimpleCard';
 import { Container, Order, Cart, ContainerPrice, LabelPrice, LabelCoin } from './styles';
 
 import { Button } from '../../designSystem/Button';
-import { useCart } from '../../context/CartContext';
+import { IForm, useCart } from '../../context/CartContext';
 import { formatPrice } from '../../utils/utils';
 
-interface IForm {
-  cep: string;
-  rua: string;
-  numero: string;
-  complemento: string;
-  bairro: string;
-  cidade: string;
-  uf: string;
-  payment: 'credit' | 'debit' | 'money';
-}
-
 export function Checkout() {
-  const { cart, removeProduct } = useCart();
-  const [totalItensPriceState, setTotalItensPriceState] = useState(0);
-  const [totalCart, setTotalCart] = useState(3.5);
+  const { cart, removeProduct, order, changeOrder } = useCart();
 
-  const [formState, setFormState] = useState<IForm>({
-    cep: '',
-    bairro: '',
-    cidade: '',
-    complemento: '',
-    numero: '',
-    rua: '',
-    uf: '',
-    payment: 'credit',
-  });
-
-  const teste = cart.reduce((sumTotal, product) => {
+  const totalItens = cart.reduce((sumTotal, product) => {
     sumTotal += product.price * product.amount;
     return sumTotal;
   }, 0);
 
-  const teste2 = teste + 3.5;
-  // useEffect(() => {
-  //   setTotalItensPriceState(
-  //     cart.reduce((sumTotal, product) => {
-  //       sumTotal += product.price * product.amount;
-  //       return sumTotal;
-  //     }, 0)
-  //   );
-  //   setTotalCart(totalItensPriceState + 3.5);
-  // }, [cart]);
+  const totalCartValue = totalItens + 3.5;
+
+  const [formState, setFormState] = useState<IForm>(order);
 
   function handleSubmitForm() {
-    console.log(formState);
+    changeOrder(formState);
   }
 
   return (
@@ -252,13 +221,13 @@ export function Checkout() {
 
           <ContainerPrice>
             <LabelPrice variant="regular">
-              Total de itens <LabelCoin>{formatPrice(teste)}</LabelCoin>
+              Total de itens <LabelCoin>{formatPrice(totalItens)}</LabelCoin>
             </LabelPrice>
             <LabelPrice variant="regular">
               Entrega <LabelCoin>{formatPrice(3.5)}</LabelCoin>
             </LabelPrice>
             <LabelPrice variant="subtitle">
-              Total <LabelCoin>{formatPrice(teste2)}</LabelCoin>
+              Total <LabelCoin>{formatPrice(totalCartValue)}</LabelCoin>
             </LabelPrice>
           </ContainerPrice>
 
