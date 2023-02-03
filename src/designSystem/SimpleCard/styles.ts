@@ -56,16 +56,8 @@ export const Container = styled.div`
 `;
 
 export const Price = styled.p`
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+   font-weight: 700;
 
   color: ${props => props.theme['base-text']};
-
-  span {
-    margin-left: 2px;
-  }
-
 
 `

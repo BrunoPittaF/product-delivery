@@ -4,11 +4,12 @@ import { useState } from 'react';
 
 import { Trash } from 'phosphor-react';
 import { Container, Price } from './styles';
+import { formatPrice } from '../../utils/utils';
 
 interface SimpleCardProps {
   image: string;
   name: string;
-  price: string;
+  price: number;
   externalValue: number;
   onClick: any;
 }
@@ -31,10 +32,7 @@ export function SimpleCard({ image, name, price, externalValue, onClick }: Simpl
         </div>
       </div>
 
-      <Price>
-        R$
-        <span>{price}</span>
-      </Price>
+      <Price>{formatPrice(price)}</Price>
     </Container>
   );
 }

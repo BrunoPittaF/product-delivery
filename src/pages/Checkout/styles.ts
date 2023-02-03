@@ -166,9 +166,4 @@ export const LabelCoin = styled.span`
   align-items: center;
   justify-content: center;
 
-
-  &::before {
-    content: "R$";
-    margin-right: 2px;
-  }
 `;

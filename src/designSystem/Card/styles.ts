@@ -96,6 +96,6 @@ export const ButtonCard = styled(ButtonContainer)`
       border-radius: 6px;
 
       &:hover {
-        background-color: ${props => props.theme['purple-default']}
+        background-color: ${props => props.theme['purple-default']};
       }
 `;

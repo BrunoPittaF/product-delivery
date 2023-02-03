@@ -6,9 +6,9 @@ import SimpleCard from '../../designSystem/SimpleCard/SimpleCard';
 
 import { Container, Order, Cart, ContainerPrice, LabelPrice, LabelCoin } from './styles';
 
-import imageCoffe from '../../assets/coffee-example.png';
 import { Button } from '../../designSystem/Button';
 import { useCart } from '../../context/CartContext';
+import { formatPrice } from '../../utils/utils';
 
 interface IForm {
   cep: string;
@@ -35,6 +35,17 @@ export function Checkout() {
     payment: 'credit',
   });
 
+  const totalItensPrice = formatPrice(
+    cart.reduce((sumTotal, product) => {
+      sumTotal += product.price * product.amount;
+      return sumTotal;
+    }, 0)
+  );
+
+  function handleSubmitForm() {
+    console.log(formState);
+  }
+
   return (
     <Container>
       <Order>
@@ -50,7 +61,7 @@ export function Checkout() {
             </div>
           </header>
 
-          <form>
+          <form id="formPayment">
             <div className="row">
               <Input
                 type="text"
@@ -229,7 +240,7 @@ export function Checkout() {
 
           <ContainerPrice>
             <LabelPrice variant="regular">
-              Total de itens <LabelCoin>29,70</LabelCoin>
+              Total de itens <LabelCoin>{totalItensPrice}</LabelCoin>
             </LabelPrice>
             <LabelPrice variant="regular">
               Entrega <LabelCoin>3,50</LabelCoin>
@@ -239,7 +250,7 @@ export function Checkout() {
             </LabelPrice>
           </ContainerPrice>
 
-          <Button className="confirmButton" variant="yellow">
+          <Button onClick={handleSubmitForm} className="confirmButton" variant="yellow">
             Confirmar Pedido
           </Button>
         </div>

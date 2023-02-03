@@ -4,7 +4,7 @@ interface IProduct {
   id: number;
   image: string;
   amount: number;
-  price: string;
+  price: number;
   name: string;
 }
 
@@ -14,7 +14,12 @@ export interface IProductInList {
   typeList: string[];
   name: string;
   description: string;
-  price: string;
+  price: number;
+}
+
+interface updateAmountProductProps {
+  productId: number;
+  amount: number;
 }
 
 interface ICartContext {
@@ -22,6 +27,7 @@ interface ICartContext {
   productList: IProductInList[];
   addProduct: (productId: number, productAmount: number) => void;
   removeProduct: (productId: number) => void;
+  updateAmountProduct: ({}: updateAmountProductProps) => void;
 }
 
 interface ICartContextProviderProps {
@@ -37,7 +43,7 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Tradicional',
       description: 'O tradicional café preto',
-      price: '9,90',
+      price: 9.9,
       typeList: ['tradicional'],
     },
     {
@@ -45,7 +51,7 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Americano',
       description: 'Expresso diluído, menos intenso que o tradicional',
-      price: '9,90',
+      price: 9.9,
       typeList: ['tradicional'],
     },
     {
@@ -53,7 +59,7 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Americano',
       description: 'Expresso diluído, com leite',
-      price: '9,90',
+      price: 9.9,
       typeList: ['tradicional'],
     },
     {
@@ -61,7 +67,7 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Americano',
       description: 'Café numero 6',
-      price: '9,90',
+      price: 9.9,
       typeList: ['tradicional', 'gelado'],
     },
     {
@@ -69,7 +75,7 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Americano',
       description: 'Nao sei qual colocar aqui',
-      price: '9,90',
+      price: 9.9,
       typeList: ['tradicional'],
     },
     {
@@ -77,7 +83,7 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
       image: 'src/assets/coffee-example.png',
       name: 'Expresso Americano',
       description: 'Bla bla bla bla bla',
-      price: '9,90',
+      price: 9.9,
       typeList: ['tradicional'],
     },
   ];
@@ -131,6 +137,21 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
     }
   }
 
+  function updateAmountProduct({ productId, amount }: updateAmountProductProps) {
+    try {
+      const newCart = [...cart];
+      const productExist = newCart.find((product) => product.id === productId);
+
+      if (!productExist) return;
+
+      productExist.amount = amount;
+      setCart(newCart);
+      localStorage.setItem('@coffee:cart', JSON.stringify(newCart));
+    } catch (error) {
+      console.error('Erro na alteração de quantidade do produto');
+    }
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -138,6 +159,7 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
         productList,
         addProduct,
         removeProduct,
+        updateAmountProduct,
       }}
     >
       {children}

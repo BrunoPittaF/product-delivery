@@ -10,7 +10,7 @@ export interface CardProps {
   typeList: string[];
   name: string;
   description: string;
-  price: string;
+  price: number;
   onClick: (productId: number, productAmount: number) => void;
 }
 
@@ -29,7 +29,7 @@ export function Card({ image, typeList, name, price, description, onClick, id }:
       <p className="description">{description}</p>
       <Footer>
         <p>
-          R$ <span>{price}</span>
+          R$ <span>{price.toFixed(2).replace('.', ',')}</span>
         </p>
         <div className="actionButtons">
           <InputNumber value={value} setValue={setValue} />
