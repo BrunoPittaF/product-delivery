@@ -37,6 +37,7 @@ export const ButtonContainer = styled.button<ButtonProps>`
       display: flex;
       align-items: center;
       justify-content: center;
+      text-decoration: none;
 
       color: ${VARIANT_TYPE[variant!].color};
       background-color: ${VARIANT_TYPE[variant!].backgroundColor}; 

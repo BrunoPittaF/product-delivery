@@ -26,5 +26,9 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Baloo 2', cursive;
   }
 
+  a {
+    text-decoration: none;
+  }
+
 
 `

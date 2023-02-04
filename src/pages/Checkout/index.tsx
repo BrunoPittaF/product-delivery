@@ -9,6 +9,7 @@ import { Container, Order, Cart, ContainerPrice, LabelPrice, LabelCoin } from '.
 import { Button } from '../../designSystem/Button';
 import { IForm, useCart } from '../../context/CartContext';
 import { formatPrice } from '../../utils/utils';
+import { Link } from 'react-router-dom';
 
 export function Checkout() {
   const { cart, removeProduct, order, changeOrder } = useCart();
@@ -231,9 +232,11 @@ export function Checkout() {
             </LabelPrice>
           </ContainerPrice>
 
-          <Button onClick={handleSubmitForm} className="confirmButton" variant="yellow">
-            Confirmar Pedido
-          </Button>
+          <Link to={'/order'}>
+            <Button onClick={handleSubmitForm} className="confirmButton" variant="yellow">
+              Confirmar Pedido
+            </Button>
+          </Link>
         </div>
       </Cart>
     </Container>

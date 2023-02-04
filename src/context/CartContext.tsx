@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface IProduct {
   id: number;
@@ -122,7 +123,6 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
     payment: 'credit',
     totalValue: 0,
   });
-
   function addProduct(productId: number, productAmount: number) {
     const newCart = [...cart];
     const productExists = newCart.find((product) => product.id === productId);
@@ -143,6 +143,7 @@ export function CartContextProvider({ children }: ICartContextProviderProps) {
 
     setCart(newCart);
     localStorage.setItem('@coffee:cart', JSON.stringify(newCart));
+    toast.success('Produto adicionado no carrinho');
   }
 
   function removeProduct(productId: number) {
