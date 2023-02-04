@@ -5,7 +5,10 @@ import { ShoppingCart, Package, Timer, Coffee } from 'phosphor-react';
 import coffeeDelivery from '../../assets/coffee-bg.png';
 import { Card } from '../../designSystem/Card';
 import { useCart } from '../../context/CartContext';
+
 import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Home() {
   const { productList, addProduct } = useCart();
@@ -47,10 +50,9 @@ export function Home() {
           })}
         </div>
       </ListProducst>
-
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

@@ -3,8 +3,12 @@ import orderDelivery from '../../assets/a-caminho.png';
 
 import { ColumnContainer, Container, Content, Label, OrderFinishedContainer, RowContainer } from './styles';
 
+import mapIcon from '../../assets/icon-map-roxo.png';
+import clockIcon from '../../assets/clock-icon.png';
+import moneyIcon from '../../assets/money-icon.png';
+
 export function OrderFinished() {
-  const { cart, order } = useCart();
+  const { order } = useCart();
 
   return (
     <Container>
@@ -14,11 +18,16 @@ export function OrderFinished() {
 
         <div className="box">
           <RowContainer>
+            <img src={mapIcon} alt="mapa" />
             <Label>
-              Entrega em <span>teste</span>
+              Entrega em{' '}
+              <span>
+                {order.rua} <br /> {order.bairro} - {order.cidade},{order.uf}
+              </span>
             </Label>
           </RowContainer>
           <RowContainer>
+            <img src={clockIcon} alt="relógio" />
             <ColumnContainer>
               <Label>Previsao de entrega</Label>
 
@@ -26,6 +35,7 @@ export function OrderFinished() {
             </ColumnContainer>
           </RowContainer>
           <RowContainer>
+            <img src={moneyIcon} alt="dinheiro" />
             <ColumnContainer>
               <Label>Pagamento na entrega</Label>
 

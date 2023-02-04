@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
   gap: 2rem;
 `;
@@ -32,22 +32,16 @@ export const OrderFinishedContainer = styled.div`
   }
 
   .box {
+    margin-top: 40px;
     width: 526px;
     height: 270px;
-
-    background-clip: padding-box; /* !importanté */
-    border: 1px solid 1px transparent; /* !importanté */
+    border: 1px solid ${props => props.theme['purple-dark']};
     border-radius: 6px 36px;
+    padding: 45px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 37px;
 
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
-      z-index: -1;
-      margin: -1px; /* !importanté */
-      border-radius: inherit; /* !importanté */
-      background: linear-gradient(102.89deg,#DBAC2C 2.61%,#8047F8 98.76%);
-    }
   }
 
 
@@ -56,6 +50,7 @@ export const OrderFinishedContainer = styled.div`
 export const RowContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 12px;
 `;
 
 export const ColumnContainer = styled.div`
